@@ -26,15 +26,14 @@ prompt1 = PromptTemplate(
 
 classifier_chain = prompt1 | model | parser2
 
-# result = classifier_chain.invoke({'feedback': "This is a wonderful smart phone."})
 
 prompt2 = PromptTemplate(
-    template = "Write an appropriate response to this positive feedback \n {feedback}",
+    template = "Write simple and short appropriate response for this positive feedback \n {feedback}",
     input_variables=['feedback']
 )
 
 prompt3 = PromptTemplate(
-    template = "Write an appropriate response to this negative feedback \n {feedback}",
+    template = "Write simple and short appropriate response for this negative feedback \n {feedback}",
     input_variables=['feedback']
 )
 
@@ -47,6 +46,6 @@ branch_chain = RunnableBranch(
 
 chain = classifier_chain | branch_chain
 
-result = chain.invoke({'feedback' : 'It was a great experience'})
+result = chain.invoke({'feedback' : 'It was a terrible experience'})
 
 print(result)
